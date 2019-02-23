@@ -6,7 +6,7 @@ steps:
 
   - name: 'gcr.io/cloud-builders/npm'
     id: 'start'
-    args: ['run']
+    args: ['start']
 
   # Build snapshot images and push them to Cloud Registry
 
