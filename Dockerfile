@@ -1,14 +1,7 @@
 FROM node:8-alpine
-
-ENV NODE_ENV=production
-
-RUN mkdir /app
-WORKDIR /app
-
-COPY package.json package-lock.json ./
-
-RUN npm install --production
-
+WORKDIR /build
+COPY package*.json ./
+RUN npm install
 COPY . .
-
-CMD ["npm", "start"]
+EXPOSE 3000
+CMD [ "npm", "start" ]

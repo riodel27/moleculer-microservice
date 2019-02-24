@@ -26,7 +26,7 @@ module.exports = {
 		 * @returns
 		 */
 		hello() {
-			return "Hello Moleculer-microservice!!! - This is for the google container registry setup!!!";
+			return "Hello Moleculer-microservice!";
 		},
 
 		/**
@@ -39,7 +39,7 @@ module.exports = {
 				name: "string"
 			},
 			handler(ctx) {
-				return `Welcome, ${ctx.params.name}`;
+				return `Welcome, ${ctx.params.name}!`;
 			}
 		}
 	},

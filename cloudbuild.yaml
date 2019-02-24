@@ -1,31 +1,16 @@
 steps:
-  - name: 'gcr.io/cloud-builders/npm'
-    id: 'Install dependencies'
-    args: ['install']
-
-
-  - name: 'gcr.io/cloud-builders/npm'
-    id: 'start'
-    args: ['start']
-
-  # Build snapshot images and push them to Cloud Registry
-
-  - name: 'gcr.io/cloud-builders/docker'
-    id: 'Build deployable image (commit tag)'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/moleculer-microservice:$SHORT_SHA', '.']
-    
-  - name: 'gcr.io/cloud-builders/docker'
-    id: 'Push deployable image (commit tag)'
-    args: ['push', 'gcr.io/$PROJECT_ID/moleculer-microservice:$SHORT_SHA']
-    
-  - name: 'gcr.io/cloud-builders/docker'
-    id: 'Build deployable image (latest tag)'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/moleculer-microservice:latest', '.']
-    
-  - name: 'gcr.io/cloud-builders/docker'
-    id: 'Push deployable image (latest tag)'
-    args: ['push', 'gcr.io/$PROJECT_ID/moleculer-microservice:latest']
-    
-images:
-  - 'gcr.io/$PROJECT_ID/moleculer-microservice:$SHORT_SHA'
-  - 'gcr.io/$PROJECT_ID/moleculer-microservice:latest'
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ["build", "-t", "gcr.io/$PROJECT_ID/image:$REVISION_ID", "."]
+- name: 'gcr.io/cloud-builders/docker'
+  args: ["push", "gcr.io/$PROJECT_ID/image:$REVISION_ID"]
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+  - 'set'
+  - 'image'
+  - 'deployment/my-deployment'
+  - 'my-container=gcr.io/$PROJECT_ID/image:$REVISION_ID'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'

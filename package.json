@@ -7,7 +7,12 @@
     "start": "moleculer-runner services",
     "cli": "moleculer connect ",
     "dc:up": "docker-compose up --build -d",
-    "dc:down": "docker-compose down"
+    "dc:down": "docker-compose down",
+    "docker:start": "docker build -t $PROJECT_ID/image:$REVISION_ID . && docker run -p 3000:3000 -d $PROJECT_ID/image:$REVISION_ID",
+    "docker:stop": "docker kill $(docker ps -f ancestor=$PROJECT_ID/image:$REVISION_ID -q) && docker rm $(docker ps -a -f status=exited -q) && docker rmi $PROJECT_ID/image:$REVISION_ID",
+    "docker:test": "docker build -t $PROJECT_ID/image/test:$REVISION_ID -f Dockerfile.test . && docker run --rm $PROJECT_ID/image/test:$REVISION_ID && docker rmi $PROJECT_ID/image/test:$REVISION_ID",
+    "clean:containers": "docker rm $(docker ps -a -f status=exited -q)",
+    "clean:images": "docker rmi $(docker images -a -q)"
   },
   "keywords": [
     "microservices",
