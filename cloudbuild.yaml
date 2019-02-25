@@ -9,8 +9,8 @@ steps:
   args:
   - 'set'
   - 'image'
-  - 'deployment/my-development'
-  - 'my-development-container=gcr.io/$PROJECT_ID/image:$REVISION_ID'
+  - 'deployment/my-deployment'
+  - 'my-container=gcr.io/$PROJECT_ID/image:$REVISION_ID'
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=dev-cluster'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
