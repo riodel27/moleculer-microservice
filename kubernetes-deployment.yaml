@@ -1,15 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: my-deployment
+  name: my-development
 spec:
   template:
     metadata:
       labels:
-        app: moleculer-microservice-project
+        app: development-moleculer-microservice-project
     spec:
       containers:
-      - name: my-container
+      - name: my-development-container
         image: gcr.io/moleculer-microservice-project/image
         imagePullPolicy: Always
         ports:
