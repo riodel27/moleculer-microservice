@@ -60,7 +60,3 @@ typings/
 # next.js build output
 .next
 
-#ignore cloud build and kubernetes setup
-cloudbuild.yaml
-kubernetes-deployment.yaml
-kubernetes-service.yaml
