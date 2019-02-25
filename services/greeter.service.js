@@ -26,7 +26,7 @@ module.exports = {
 		 * @returns
 		 */
 		hello() {
-			return "Hello Moleculer-microservice! This is dev environment!";
+			return "Hello Moleculer-microservice!";
 		},
 
 		/**
