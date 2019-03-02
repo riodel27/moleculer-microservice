@@ -1,4 +1,4 @@
-FROM node:8-alpine
+FROM node:latest
 WORKDIR /build
 COPY package*.json ./
 RUN npm install
